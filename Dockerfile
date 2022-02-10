@@ -1,12 +1,12 @@
-FROM ubuntu:bionic
-MAINTAINER Richard Challis/LepBase contact@lepbase.org
+FROM ubuntu:focal
+MAINTAINER Richard Challis/GeneomHubs contact@genomehubs.org
 
 ENV TZ=Europe/London
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update && apt-get install -y \
     git \
-    php7.2-cgi \
+    php7.4-cgi \
     unzip \
     wget
 
@@ -26,11 +26,11 @@ USER lighttpd
 
 WORKDIR /tmp
 
-RUN wget -c https://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-1.4.54.tar.gz -O - | tar xz
+RUN wget -c https://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-1.4.64.tar.gz -O - | tar xz
 
-WORKDIR /tmp/lighttpd-1.4.54
+WORKDIR /tmp/lighttpd-1.4.64
 
-RUN ./configure --prefix=/lighttpd \
+RUN ./configure --prefix=/lighttpd --without-pcre2 \
     && make \
     && make install
 
@@ -41,7 +41,7 @@ COPY lighttpd.conf /lighttpd/conf/
 
 RUN mkdir -p /lighttpd/uploads && mkdir -p /lighttpd/log && mkdir -p /lighttpd/run && mkdir -p /lighttpd/cache
 
-ARG VERSION=0.29.2
+ARG VERSION=0.30.0
 
 WORKDIR /tmp
 

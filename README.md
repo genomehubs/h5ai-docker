@@ -1,7 +1,7 @@
-# Lepbase h5ai download server deployment
+# GenomeHubs h5ai download server deployment
 
 ```
-docker run -d -p 8080:80 -v h5ai/conf:/conf -v /data/to/host:/var/www/data --name lepbase-download h5ai-downloads
+docker run -d -p 8080:80 -v h5ai/conf:/conf -v /data/to/host:/var/www/data --name genomehubs-download h5ai-downloads
 ```
 
 Directories to be indexed should be mounted as subdirectories of ``/var/www``

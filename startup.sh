@@ -22,11 +22,12 @@ fi
 
 if [ -s /conf/Masthead.html ]; then
 #  sed -i '/<body[^>]*>/ r /conf/Masthead.html' /var/www/html/_h5ai/private/php/pages/index.php
-  sed -i 's/<\/head>/<\/head>\n/' /var/www/html/_h5ai/private/php/pages/index.php
+  sed -i 's:</head>:</head>\n:' /var/www/html/_h5ai/private/php/pages/index.php
   sed -i '/<\/head>/ r /conf/Masthead.html' /var/www/html/_h5ai/private/php/pages/index.php
-  sed -i 's/<body[^>]*>/<outer class="index" id="root"/' /var/www/html/_h5ai/private/php/pages/index.php
-  sed -i 's/<\/head>/<\/head><body>/' /var/www/html/_h5ai/private/php/pages/index.php
-  sed -i 's/o="body"/o="outer"/g' /var/www/html/_h5ai/public/js/scripts.js
+  sed -i 's:<body[^>]*>:<outer class="index" id="root">:' /var/www/html/_h5ai/private/php/pages/index.php
+  sed -i 's:</head>:</head><body>:' /var/www/html/_h5ai/private/php/pages/index.php
+  sed -i 's:</body>:</outer></body>:' /var/www/html/_h5ai/private/php/pages/index.php
+  sed -i 's:o="body":o="outer":g' /var/www/html/_h5ai/public/js/scripts.js
 fi
 
 if [ -d /conf/img ]; then
